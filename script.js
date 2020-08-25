@@ -94,20 +94,8 @@ function isPasswordLengthValid(length) {
 }
 
 function generatePassword(userCriteria) {
-  let allowableCharacters = [];
-  if (userCriteria.characterTypes.includes("L")) {
-    allowableCharacters = allowableCharacters.concat(getLowercaseList());
-  } 
-  if (userCriteria.characterTypes.includes("U")) {
-    allowableCharacters = allowableCharacters.concat(getUppercaseList());
-  } 
-  if (userCriteria.characterTypes.includes("N")) {
-    allowableCharacters = allowableCharacters.concat(getNumbersList());
-  } 
-  if (userCriteria.characterTypes.includes("S")) {
-    allowableCharacters = allowableCharacters.concat(getSpecialCharactersList());
-  }
-  
+  let allowableCharacters = getAllowableCharacterList(userCriteria.characterTypes);
+
   let password = [];
 
   for (let i = 0; i < userCriteria.length; i ++) {
@@ -118,6 +106,25 @@ function generatePassword(userCriteria) {
   password = password.toString().replace(/,/g,"");
 
   return password;
+}
+
+function getAllowableCharacterList(userSelection) {
+  let allowableCharacters = [];
+  
+  if (userSelection.includes("L")) {
+    allowableCharacters = allowableCharacters.concat(getLowercaseList());
+  } 
+  if (userSelection.includes("U")) {
+    allowableCharacters = allowableCharacters.concat(getUppercaseList());
+  } 
+  if (userSelection.includes("N")) {
+    allowableCharacters = allowableCharacters.concat(getNumbersList());
+  } 
+  if (userSelection.includes("S")) {
+    allowableCharacters = allowableCharacters.concat(getSpecialCharactersList());
+  }
+  
+  return allowableCharacters;
 }
 
 function getLowercaseList() {
