@@ -94,14 +94,15 @@ function isPasswordLengthValid(length) {
 }
 
 function generatePassword(userCriteria) {
-  let allowableCharacters = getAllowableCharacterList(userCriteria.characterTypes);
-
+  const allowableCharacters = getAllowableCharacterList(userCriteria.characterTypes);
+  console.log(allowableCharacters);
   let password = [];
 
   for (let i = 0; i < userCriteria.length; i ++) {
-    let randomNum = Math.floor(Math.random() * (allowableCharacters.length + 1));
-    console.log(randomNum);
-    password.push(allowableCharacters[randomNum]);
+    const listNum = Math.floor(Math.random() * (allowableCharacters.length));
+    const charNum = Math.floor(Math.random() * (allowableCharacters[listNum].length));
+
+    password.push(allowableCharacters[listNum][charNum]);
   }
   password = password.toString().replace(/,/g,"");
 
@@ -112,16 +113,16 @@ function getAllowableCharacterList(userSelection) {
   let allowableCharacters = [];
   
   if (userSelection.includes("L")) {
-    allowableCharacters = allowableCharacters.concat(getLowercaseList());
+    allowableCharacters.push(getLowercaseList());
   } 
   if (userSelection.includes("U")) {
-    allowableCharacters = allowableCharacters.concat(getUppercaseList());
+    allowableCharacters.push(getUppercaseList());
   } 
   if (userSelection.includes("N")) {
-    allowableCharacters = allowableCharacters.concat(getNumbersList());
+    allowableCharacters.push(getNumbersList());
   } 
   if (userSelection.includes("S")) {
-    allowableCharacters = allowableCharacters.concat(getSpecialCharactersList());
+    allowableCharacters.push(getSpecialCharactersList());
   }
   
   return allowableCharacters;
