@@ -25,7 +25,14 @@ function displayNewPassword () {
 // special characters
 
 function getCriteria() {
-  //have an object criteria containing each criteria list
+  
+  const userCriteria = {
+    length: 8,
+    lowercase: true,
+    uppercase: false, 
+    numeric: false, 
+    specialCharacters: false,
+  }
 
   //validate all responses
   //make sure input is lowercase
@@ -38,6 +45,8 @@ function getCriteria() {
 
   //return object criteria
 }
+
+
 
 function generatePassword(criteriaObject) {
   //go through each criteria Object
