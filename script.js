@@ -98,6 +98,15 @@ function getLowercaseList() {
   return lowercase;
 }
 
+function generatePassword(criteriaObject) {
+  //if it is active, push the criteria to the generating array
+
+  //have the computer generate a random numnber for the length
+  //have the computer generate random number n times to select an index in this huge array of possible characters/etc
+
+  //return the password
+}
+
 function getUppercaseList() {
   const upperCase = getLowerCaseList().toString().toUpperCase().split(",");
   return upperCase;
@@ -111,13 +120,4 @@ function getNumbersList() {
 function getSpecialCharactersList() {
   const specialChar = ['!', '"', '#', "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "]", "\\", "]", "^", "_", "`","{", "|", "}", "~"];
   return specialChar;
-}
-
-function generatePassword(criteriaObject) {
-  //if it is active, push the criteria to the generating array
-
-  //have the computer generate a random numnber for the length
-  //have the computer generate random number n times to select an index in this huge array of possible characters/etc
-
-  //return the password
 }
