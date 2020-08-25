@@ -93,11 +93,6 @@ function isPasswordLengthValid(length) {
   return validCondition;
 }
 
-function getLowercaseList() {
-  const lowercase = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-  return lowercase;
-}
-
 function generatePassword(criteriaObject) {
   //if it is active, push the criteria to the generating array
 
@@ -105,6 +100,11 @@ function generatePassword(criteriaObject) {
   //have the computer generate random number n times to select an index in this huge array of possible characters/etc
 
   //return the password
+}
+
+function getLowercaseList() {
+  const lowercase = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+  return lowercase;
 }
 
 function getUppercaseList() {
