@@ -64,7 +64,7 @@ function askPasswordLength() {
   let length = Number(prompt("How long would you like the password to be? (Must be a number from 8 to 128)"));
   while (!isPasswordLengthValid(length)) {
     //console.log("Invalid length: " + length);
-    length = Number(prompt("Sorry, that is an invalid length. The length must be an integer from 8 to 128. How long would you like the password to be?"));
+    length = Number(prompt(`Sorry, ${length} is an invalid length.` + '\n The length must be: \n - An integer \n - At minimum, 8 \n - At maximum, 128 \nHow long would you like the password to be?'));
   }
   //console.log("Valid length: " + length);
   return length;
