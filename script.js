@@ -15,8 +15,8 @@ function displayNewPassword () {
   let passwordText = document.getElementById('password')
   passwordText.value = password
   }
-  catch(e) {
-    console.log(e);
+  catch(err) {
+    console.log(err);
   }
 }
 
@@ -35,6 +35,7 @@ function getCriteria() {
   userCriteria.characterTypes = askCharacterTypes();
   //console.log(userCriteria.characterTypes);
 
+  return userCriteria;
 }
 
 function askCharacterTypes() {
