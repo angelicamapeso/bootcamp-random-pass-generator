@@ -93,13 +93,31 @@ function isPasswordLengthValid(length) {
   return validCondition;
 }
 
-function generatePassword(criteriaObject) {
-  //if it is active, push the criteria to the generating array
+function generatePassword(userCriteria) {
+  let allowableCharacters = [];
+  if (userCriteria.characterTypes.includes("L")) {
+    allowableCharacters = allowableCharacters.concat(getLowercaseList());
+  } 
+  if (userCriteria.characterTypes.includes("U")) {
+    allowableCharacters = allowableCharacters.concat(getUppercaseList());
+  } 
+  if (userCriteria.characterTypes.includes("N")) {
+    allowableCharacters = allowableCharacters.concat(getNumbersList());
+  } 
+  if (userCriteria.characterTypes.includes("S")) {
+    allowableCharacters = allowableCharacters.concat(getSpecialCharactersList());
+  }
+  
+  let password = [];
 
-  //have the computer generate a random numnber for the length
-  //have the computer generate random number n times to select an index in this huge array of possible characters/etc
+  for (let i = 0; i < userCriteria.length; i ++) {
+    let randomNum = Math.floor(Math.random() * (allowableCharacters.length + 1));
+    console.log(randomNum);
+    password.push(allowableCharacters[randomNum]);
+  }
+  password = password.toString().replace(/,/g,"");
 
-  //return the password
+  return password;
 }
 
 function getLowercaseList() {
@@ -108,7 +126,7 @@ function getLowercaseList() {
 }
 
 function getUppercaseList() {
-  const upperCase = getLowerCaseList().toString().toUpperCase().split(",");
+  const upperCase = getLowercaseList().toString().toUpperCase().split(",");
   return upperCase;
 }
 
