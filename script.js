@@ -93,8 +93,27 @@ function isPasswordLengthValid(length) {
   return validCondition;
 }
 
+function getLowercaseList() {
+  const lowercase = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+  return lowercase;
+}
+
+function getUppercaseList() {
+  const upperCase = getLowerCaseList().toString().toUpperCase().split(",");
+  return upperCase;
+}
+
+function getNumbersList() {
+  const numbers = [0,1,2,3,4,5,6,7,8,9];
+  return numbers;
+}
+
+function getSpecialCharactersList() {
+  const specialChar = ['!', '"', '#', "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "]", "\\", "]", "^", "_", "`","{", "|", "}", "~"];
+  return specialChar;
+}
+
 function generatePassword(criteriaObject) {
-  //go through each criteria Object
   //if it is active, push the criteria to the generating array
 
   //have the computer generate a random numnber for the length
