@@ -34,6 +34,15 @@ function getCriteria() {
     specialCharacters: false,
   }
 
+  let length = Number(prompt("How long would you like the password to be? (Must be a number from 8 to 128)"));
+  while (Number.isNaN(length)
+        || length % 1 !== 0
+        || length < 8 
+        || length > 128 ) {
+    console.log("Invalid length: " + length);
+    length = Number(prompt("Sorry, that is an invalid length. The length must be an integer from 8 to 128. How long would you like the password to be?"));
+  }
+  console.log("Valid length: " + length);
   //validate all responses
   //make sure input is lowercase
   //make sure input is a letter
@@ -45,7 +54,6 @@ function getCriteria() {
 
   //return object criteria
 }
-
 
 
 function generatePassword(criteriaObject) {
