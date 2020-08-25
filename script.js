@@ -28,24 +28,43 @@ function getCriteria() {
   
   const userCriteria = {
     length: 8,
-    lowercase: true,
-    uppercase: false, 
-    numeric: false, 
-    specialCharacters: false,
+    characterTypes: ['L'],
   }
 
   userCriteria.length = askPasswordLength();
-  console.log(userCriteria.length);
-  //validate all responses
-  //make sure input is lowercase
-  //make sure input is a letter
-  //make sure input matches one of the letters
-    //see which index its at and that selects thing.?
-  //one prompt, seperated by commas
-    //remove all the white space and split by the comma
-    //use their response as input to get the required criteria
+  //console.log(userCriteria.length);
 
-  //return object criteria
+  userCriteria.characterTypes = askCharacterTypes();
+  //console.log(userCriteria.characterTypes);
+
+}
+
+function askCharacterTypes() {
+  let characterTypes = prompt("Type a comma-seperated list of the character types you wish to include in the password: \n - lowercase (L) \n - uppercase (U) \n - numberic (N) \n - special characters (S)").toUpperCase().replace(/\s+/g, "").split(",");
+
+  while (!isCharacterValid(characterTypes)) {
+    //console.log("Non-valid input: " + characterTypes);
+    characterTypes = prompt("Sorry, that wasn't a valid answer. Type a comma-seperated list of the character types you wish to include in the password: \n - lowercase (L) \n - uppercase (U) \n - numberic (N) \n - special characters (S)").toUpperCase().replace(/\s+/g, "").split(",");
+  }
+  //console.log("Valid input: " + characterTypes);
+
+  return characterTypes;
+}
+
+function isCharacterValid(characterTypes) {
+  if (characterTypes.length === 0) {
+    return false;
+  }
+  for (let i = 0; i < characterTypes.length; i ++) {
+    if (characterTypes[i].length > 1 
+      || (characterTypes[i] !== "L"
+      && characterTypes[i] !== "U"
+      && characterTypes[i] !== "N"
+      && characterTypes[i] !== "S")) {
+        return false;
+      }
+  }
+  return true;
 }
 
 function askPasswordLength() {
