@@ -38,11 +38,11 @@ function getCriteria() {
 }
 
 function askCharacterTypes() {
-  let characterTypes = prompt("Type a comma-seperated list of the character types you wish to include in the password: \n - lowercase (L) \n - uppercase (U) \n - numberic (N) \n - special characters (S)");
+  let characterTypes = prompt("Select the character type(s) you wish to include in your password by typing the corresponding letter. If you want to include multiple types, please use a comma separated list of letters. \n - lowercase (L) \n - uppercase (U) \n - numberic (N) \n - special characters (S)");
 
   while (!areCharactersValid(characterTypes)) {
     //console.log("Non-valid input: " + characterTypes);
-    characterTypes = prompt("Sorry, that wasn't a valid answer. Type a comma-seperated list of the character types you wish to include in the password: \n - lowercase (L) \n - uppercase (U) \n - numberic (N) \n - special characters (S)");
+    characterTypes = prompt(`Sorry, "${characterTypes}" isn't a valid answer.` + "\nYour input should only use the corresponding letter from these options: \n - lowercase (L) \n - uppercase (U) \n - numberic (N) \n - special characters (S) \nAnd should be a comma separated list for multiple selections.");
   }
   //console.log("Valid input: " + characterTypes);
 
