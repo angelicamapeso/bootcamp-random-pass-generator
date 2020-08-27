@@ -92,9 +92,9 @@ function generatePassword(userCriteria) {
   Once the list of possible character types to pick from is exhausted, 
   it is refreshed again.*/
 
-  const numberOfCharacterOptions = allRequestedCharacters.length;
+  const numberOfCharacterTypes = allRequestedCharacters.length;
   //the list is generated here
-  let possibleCharacterOptions = getCharOptions(numberOfCharacterOptions);
+  let possibleCharacterOptions = getCharOptions(numberOfCharacterTypes);
 
   let password = [];
 
@@ -109,7 +109,7 @@ function generatePassword(userCriteria) {
     //the used character type is removed here
     possibleCharacterOptions.splice(indexOfCharType, 1);
     if (possibleCharacterOptions.length === 0) {
-      possibleCharacterOptions = getCharOptions(numberOfCharacterOptions);
+      possibleCharacterOptions = getCharOptions(numberOfCharacterTypes);
     }
   }
   password = password.toString().replace(/,/g,"");
@@ -117,9 +117,9 @@ function generatePassword(userCriteria) {
   return password;
 }
 
-function getCharOptions(numberOfCharacterOptions) {
+function getCharOptions(numberOfCharacterTypes) {
   let charOptions = [];
-  for (let i = 0; i < numberOfCharacterOptions; i ++) {
+  for (let i = 0; i < numberOfCharacterTypes; i ++) {
     charOptions.push(i);
   }
   return charOptions;
