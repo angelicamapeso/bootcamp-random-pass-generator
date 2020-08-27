@@ -57,37 +57,6 @@ function isACharacterTypeSelected(userCriteria) {
   return false;
 }
 
-// function askCharacterTypes() {
-//   let characterTypes = prompt("Select the character type(s) you wish to include in your password by typing the corresponding letter. If you want to include multiple types, please use a comma separated list of letters. \n - lowercase (L) \n - uppercase (U) \n - numberic (N) \n - special characters (S)");
-
-//   while (!areCharactersValid(characterTypes)) {
-//     //console.log("Non-valid input: " + characterTypes);
-//     characterTypes = prompt(`Sorry, "${characterTypes}" isn't a valid answer.` + "\nYour input should only use the corresponding letter from these options: \n - lowercase (L) \n - uppercase (U) \n - numberic (N) \n - special characters (S) \nAnd should be a comma separated list for multiple selections.");
-//   }
-//   //console.log("Valid input: " + characterTypes);
-
-//   return characterTypes;
-// }
-
-// function areCharactersValid(characterTypes) {
-//   if (characterTypes === "" || characterTypes === null) {
-//     throw 'Character length not entered. Password generation canceled.';
-//   }
-
-//   const convertedCharacterTypes = characterTypes.toUpperCase().replace(/\s+/g, "").split(",");
-
-//   for (let i = 0; i < convertedCharacterTypes.length; i ++) {
-//     if (convertedCharacterTypes[i].length > 1 
-//       || (convertedCharacterTypes[i] !== "L"
-//       && convertedCharacterTypes[i] !== "U"
-//       && convertedCharacterTypes[i] !== "N"
-//       && convertedCharacterTypes[i] !== "S")) {
-//         return false;
-//       }
-//   }
-//   return true;
-// }
-
 function askPasswordLength() {
   let length = prompt("How long would you like the password to be? (Must be a number from 8 to 128)");
 
@@ -113,7 +82,7 @@ function isPasswordLengthValid(length) {
 }
 
 function generatePassword(userCriteria) {
-  const allowableCharacters = getAllowableCharacterList(userCriteria);
+  const allRequestedCharacters = getAllowableCharacterList(userCriteria);
 
   /*To ensure that all character types appear in the password,
   a list is generated of all the possible character types. 
@@ -123,7 +92,7 @@ function generatePassword(userCriteria) {
   Once the list of possible character types to pick from is exhausted, 
   it is refreshed again.*/
 
-  const numberOfCharacterOptions = allowableCharacters.length;
+  const numberOfCharacterOptions = allRequestedCharacters.length;
   //the list is generated here
   let possibleCharacterOptions = getCharOptions(numberOfCharacterOptions);
 
@@ -133,9 +102,9 @@ function generatePassword(userCriteria) {
     const indexOfCharType = Math.floor(Math.random()*possibleCharacterOptions.length);
     const charType = possibleCharacterOptions[indexOfCharType];
 
-    const charNum = Math.floor(Math.random() * (allowableCharacters[charType].length));
+    const charNum = Math.floor(Math.random() * (allRequestedCharacters[charType].length));
     
-    password.push(allowableCharacters[charType][charNum]);
+    password.push(allRequestedCharacters[charType][charNum]);
 
     //the used character type is removed here
     possibleCharacterOptions.splice(indexOfCharType, 1);
@@ -157,22 +126,22 @@ function getCharOptions(numberOfCharacterOptions) {
 }
 
 function getAllowableCharacterList(userSelection) {
-  let allowableCharacters = [];
+  let allRequestedCharacters = [];
   
   if (userSelection.includeLowercase) {
-    allowableCharacters.push(getLowercaseList());
+    allRequestedCharacters.push(getLowercaseList());
   } 
   if (userSelection.includeUppercase) {
-    allowableCharacters.push(getUppercaseList());
+    allRequestedCharacters.push(getUppercaseList());
   } 
   if (userSelection.includeNumbers) {
-    allowableCharacters.push(getNumbersList());
+    allRequestedCharacters.push(getNumbersList());
   } 
   if (userSelection.includeSpecialChar) {
-    allowableCharacters.push(getSpecialCharactersList());
+    allRequestedCharacters.push(getSpecialCharactersList());
   }
   
-  return allowableCharacters;
+  return allRequestedCharacters;
 }
 
 function getLowercaseList() {
