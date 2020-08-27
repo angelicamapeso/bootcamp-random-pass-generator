@@ -61,17 +61,12 @@ function askPasswordLength() {
   let length = prompt("How long would you like the password to be? (Must be a number from 8 to 128)");
 
   while (!isPasswordLengthValid(length)) {
-    //console.log("Invalid length: " + length);
     length = prompt(`Sorry, ${length} is an invalid length.` + '\n The length must be: \n - An integer \n - At minimum, 8 \n - At maximum, 128 \nHow long would you like the password to be?');
   }
-  //console.log("Valid length: " + length);
   return length;
 }
 
 function isPasswordLengthValid(length) {
-  if (length === ""|| length === null) {
-    throw 'Length not entered. Password generation canceled.';
-  }
   const convertedLength = Number(length);
   const validCondition = (!Number.isNaN(convertedLength)
     && convertedLength % 1 === 0
