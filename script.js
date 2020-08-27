@@ -118,8 +118,8 @@ function isPasswordLengthValid(length) {
 }
 
 function generatePassword(userCriteria) {
-  const allowableCharacters = getAllowableCharacterList(userCriteria.characterTypes);
-  console.log(allowableCharacters);
+  const allowableCharacters = getAllowableCharacterList(userCriteria);
+  //console.log(allowableCharacters);
   let password = [];
 
   for (let i = 0; i < userCriteria.length; i ++) {
