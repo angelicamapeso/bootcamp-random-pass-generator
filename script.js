@@ -68,12 +68,12 @@ function askPasswordLength() {
 
 function isPasswordLengthValid(length) {
   const convertedLength = Number(length);
-  const validCondition = (!Number.isNaN(convertedLength)
+  const isPassLengthValid = (!Number.isNaN(convertedLength)
     && convertedLength % 1 === 0
-    && convertedLength >= 8 
+    && convertedLength >= 8
     && convertedLength <= 128); 
 
-  return validCondition;
+  return isPassLengthValid;
 }
 
 function generatePassword(userCriteria) {
