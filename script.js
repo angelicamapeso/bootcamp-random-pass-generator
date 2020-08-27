@@ -94,22 +94,22 @@ function generatePassword(userCriteria) {
 
   const numberOfCharacterTypes = allRequestedCharacters.length;
   //the list is generated here
-  let possibleCharacterOptions = getListOfCharacterTypes(numberOfCharacterTypes);
+  let availableCharacterTypes = getListOfCharacterTypes(numberOfCharacterTypes);
 
   let password = [];
 
   for (let i = 0; i < userCriteria.length; i ++) {
-    const indexOfCharType = Math.floor(Math.random()*possibleCharacterOptions.length);
-    const charType = possibleCharacterOptions[indexOfCharType];
+    const indexOfCharType = Math.floor(Math.random()*availableCharacterTypes.length);
+    const charType = availableCharacterTypes[indexOfCharType];
 
     const charNum = Math.floor(Math.random() * (allRequestedCharacters[charType].length));
     
     password.push(allRequestedCharacters[charType][charNum]);
 
     //the used character type is removed here
-    possibleCharacterOptions.splice(indexOfCharType, 1);
-    if (possibleCharacterOptions.length === 0) {
-      possibleCharacterOptions = getListOfCharacterTypes(numberOfCharacterTypes);
+    availableCharacterTypes.splice(indexOfCharType, 1);
+    if (availableCharacterTypes.length === 0) {
+      availableCharacterTypes = getListOfCharacterTypes(numberOfCharacterTypes);
     }
   }
   password = password.toString().replace(/,/g,"");
