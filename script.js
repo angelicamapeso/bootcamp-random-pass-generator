@@ -136,16 +136,16 @@ function generatePassword(userCriteria) {
 function getAllowableCharacterList(userSelection) {
   let allowableCharacters = [];
   
-  if (userSelection.includes("L")) {
+  if (userSelection.includeLowercase) {
     allowableCharacters.push(getLowercaseList());
   } 
-  if (userSelection.includes("U")) {
+  if (userSelection.includeUppercase) {
     allowableCharacters.push(getUppercaseList());
   } 
-  if (userSelection.includes("N")) {
+  if (userSelection.includeNumbers) {
     allowableCharacters.push(getNumbersList());
   } 
-  if (userSelection.includes("S")) {
+  if (userSelection.includeSpecialChar) {
     allowableCharacters.push(getSpecialCharactersList());
   }
   
