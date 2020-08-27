@@ -85,12 +85,12 @@ function generatePassword(userCriteria) {
   const allRequestedCharacters = getRequestedCharacters(userCriteria);
 
   /*To ensure that all character types appear in the password,
-  a list is generated of all the possible character types. 
+  a list is generated of all the selected character types. 
   When a character type is used, it is removed
-  from the list so that it may not randomly be selected
+  from the list so that it may not be randomly selected
   again and the computer has to select another character type. 
   Once the list of possible character types to pick from is exhausted, 
-  it is refreshed again.*/
+  this list is refreshed again.*/
 
   const numberOfCharacterTypes = allRequestedCharacters.length;
   //the list is generated here
