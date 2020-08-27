@@ -9,14 +9,14 @@ generateBtn.addEventListener('click', displayNewPassword)
  * @returns {void} Nothing
  */
 function displayNewPassword () {
+  let passwordText = document.getElementById('password')
   try {
   let criteria = getCriteria()
   let password = generatePassword(criteria)
-  let passwordText = document.getElementById('password')
   passwordText.value = password
   }
   catch(err) {
-    console.log(err);
+    passwordText.value = err;
   }
 }
 
