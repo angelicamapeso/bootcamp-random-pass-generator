@@ -82,7 +82,7 @@ function isPasswordLengthValid(length) {
 }
 
 function generatePassword(userCriteria) {
-  const allRequestedCharacters = getAllowableCharacterList(userCriteria);
+  const allRequestedCharacters = getRequestedCharacters(userCriteria);
 
   /*To ensure that all character types appear in the password,
   a list is generated of all the possible character types. 
@@ -125,7 +125,7 @@ function getCharOptions(numberOfCharacterOptions) {
   return charOptions;
 }
 
-function getAllowableCharacterList(userSelection) {
+function getRequestedCharacters(userSelection) {
   let allRequestedCharacters = [];
   
   if (userSelection.includeLowercase) {
