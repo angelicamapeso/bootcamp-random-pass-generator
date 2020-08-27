@@ -26,48 +26,72 @@ function getCriteria() {
   
   const userCriteria = {
     length: 8,
-    characterTypes: ['L'],
+    includeLowercase: true,
+    includeUppercase: false,
+    includeNumbers: false,
+    includeSpecialChar: false,
   }
 
   userCriteria.length = askPasswordLength();
   //console.log(userCriteria.length);
 
-  userCriteria.characterTypes = askCharacterTypes();
-  //console.log(userCriteria.characterTypes);
+  do {
+    userCriteria.includeLowercase = confirm("Would you like to include lowercase characters in your password?");
+
+    userCriteria.includeUppercase = confirm("Would you like to include uppercase characters in your password?");
+
+    userCriteria.includeNumbers = confirm("Would you like to include numbers in your password?");
+
+    userCriteria.includeSpecialChar = confirm("Would you like to include special characters in your password?");
+    
+    //console.log(userCriteria.characterTypes);
+  } while(!isOneCharacterTypeSelected(userCriteria));
 
   return userCriteria;
 }
 
-function askCharacterTypes() {
-  let characterTypes = prompt("Select the character type(s) you wish to include in your password by typing the corresponding letter. If you want to include multiple types, please use a comma separated list of letters. \n - lowercase (L) \n - uppercase (U) \n - numberic (N) \n - special characters (S)");
-
-  while (!areCharactersValid(characterTypes)) {
-    //console.log("Non-valid input: " + characterTypes);
-    characterTypes = prompt(`Sorry, "${characterTypes}" isn't a valid answer.` + "\nYour input should only use the corresponding letter from these options: \n - lowercase (L) \n - uppercase (U) \n - numberic (N) \n - special characters (S) \nAnd should be a comma separated list for multiple selections.");
+function isOneCharacterTypeSelected(userCriteria) {
+  const userCriteriaKeys = Object.values(userCriteria);
+  
+  for (let i = 1; i < userCriteriaKeys.length; i ++) {
+    if (userCriteriaKeys[i]) {
+      return true;
+    }
   }
-  //console.log("Valid input: " + characterTypes);
-
-  return characterTypes;
+  alert("You did not select any character types to include in your password. \nPlease answer 'OK' at least to one of the character types.");
+  return false;
 }
 
-function areCharactersValid(characterTypes) {
-  if (characterTypes === "" || characterTypes === null) {
-    throw 'Character length not entered. Password generation canceled.';
-  }
+// function askCharacterTypes() {
+//   let characterTypes = prompt("Select the character type(s) you wish to include in your password by typing the corresponding letter. If you want to include multiple types, please use a comma separated list of letters. \n - lowercase (L) \n - uppercase (U) \n - numberic (N) \n - special characters (S)");
 
-  const convertedCharacterTypes = characterTypes.toUpperCase().replace(/\s+/g, "").split(",");
+//   while (!areCharactersValid(characterTypes)) {
+//     //console.log("Non-valid input: " + characterTypes);
+//     characterTypes = prompt(`Sorry, "${characterTypes}" isn't a valid answer.` + "\nYour input should only use the corresponding letter from these options: \n - lowercase (L) \n - uppercase (U) \n - numberic (N) \n - special characters (S) \nAnd should be a comma separated list for multiple selections.");
+//   }
+//   //console.log("Valid input: " + characterTypes);
 
-  for (let i = 0; i < convertedCharacterTypes.length; i ++) {
-    if (convertedCharacterTypes[i].length > 1 
-      || (convertedCharacterTypes[i] !== "L"
-      && convertedCharacterTypes[i] !== "U"
-      && convertedCharacterTypes[i] !== "N"
-      && convertedCharacterTypes[i] !== "S")) {
-        return false;
-      }
-  }
-  return true;
-}
+//   return characterTypes;
+// }
+
+// function areCharactersValid(characterTypes) {
+//   if (characterTypes === "" || characterTypes === null) {
+//     throw 'Character length not entered. Password generation canceled.';
+//   }
+
+//   const convertedCharacterTypes = characterTypes.toUpperCase().replace(/\s+/g, "").split(",");
+
+//   for (let i = 0; i < convertedCharacterTypes.length; i ++) {
+//     if (convertedCharacterTypes[i].length > 1 
+//       || (convertedCharacterTypes[i] !== "L"
+//       && convertedCharacterTypes[i] !== "U"
+//       && convertedCharacterTypes[i] !== "N"
+//       && convertedCharacterTypes[i] !== "S")) {
+//         return false;
+//       }
+//   }
+//   return true;
+// }
 
 function askPasswordLength() {
   let length = prompt("How long would you like the password to be? (Must be a number from 8 to 128)");
