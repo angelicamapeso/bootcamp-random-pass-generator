@@ -45,12 +45,12 @@ function getCriteria() {
     userCriteria.includeSpecialChar = confirm("Would you like to include special characters in your password?");
     
     //console.log(userCriteria.characterTypes);
-  } while(!isOneCharacterTypeSelected(userCriteria));
+  } while(!isACharacterTypeSelected(userCriteria));
 
   return userCriteria;
 }
 
-function isOneCharacterTypeSelected(userCriteria) {
+function isACharacterTypeSelected(userCriteria) {
   const userCriteriaKeys = Object.values(userCriteria);
   
   for (let i = 1; i < userCriteriaKeys.length; i ++) {
