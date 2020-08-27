@@ -6,13 +6,16 @@ This page generates a random password based on the user's responses to the follo
 - Allowing numerals
 - Allowing special characters
 
-The HTML, CSS and JavaScript starter files were provided by the bootcamp. Since the use of JavaScript is main focus of this assignment, only the JavaScript file was modified.
+The HTML, CSS and JavaScript starter files were provided by the bootcamp. Since the use of JavaScript is the main focus of this assignment, only the JavaScript file was modified.
 
 ## Purpose
 Based on the given User Story of the assignment, this application was built for employees who have access to sensitive information and need a strong password. 
 
-## JavaScript Concepts Used
-
+## Main JavaScript Concepts Used 
+- Objects
+- Arrays
+- Loops (Do/while, while, for)
+- Browser functions (prompt, confirm, alert)
 
 This homework assignment is part of the [Carleton University Coding Bootcamp](https://bootcamp.carleton.ca/).
 
