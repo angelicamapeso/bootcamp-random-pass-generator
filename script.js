@@ -118,11 +118,11 @@ function generatePassword(userCriteria) {
 }
 
 function getListOfCharacterTypes(numberOfCharacterTypes) {
-  let charOptions = [];
+  let charTypes = [];
   for (let i = 0; i < numberOfCharacterTypes; i ++) {
-    charOptions.push(i);
+    charTypes.push(i);
   }
-  return charOptions;
+  return charTypes;
 }
 
 function getRequestedCharacters(userSelection) {
