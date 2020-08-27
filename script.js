@@ -10,14 +10,9 @@ generateBtn.addEventListener('click', displayNewPassword)
  */
 function displayNewPassword () {
   let passwordText = document.getElementById('password')
-  try {
   let criteria = getCriteria()
   let password = generatePassword(criteria)
   passwordText.value = password
-  }
-  catch(err) {
-    passwordText.value = err;
-  }
 }
 
 /* Your solution code goes here ... */
@@ -119,18 +114,46 @@ function isPasswordLengthValid(length) {
 
 function generatePassword(userCriteria) {
   const allowableCharacters = getAllowableCharacterList(userCriteria);
-  //console.log(allowableCharacters);
+
+  /*To ensure that all character types appear in the password,
+  a list is generated of all the possible character types. 
+  When a character type is used, it is removed
+  from the list so that it may not randomly be selected
+  again and the computer has to select another character type. 
+  Once the list of possible character types to pick from is exhausted, 
+  it is refreshed again.*/
+
+  const numberOfCharacterOptions = allowableCharacters.length;
+  //the list is generated here
+  let possibleCharacterOptions = getCharOptions(numberOfCharacterOptions);
+
   let password = [];
 
   for (let i = 0; i < userCriteria.length; i ++) {
-    const listNum = Math.floor(Math.random() * (allowableCharacters.length));
-    const charNum = Math.floor(Math.random() * (allowableCharacters[listNum].length));
+    const indexOfCharType = Math.floor(Math.random()*possibleCharacterOptions.length);
+    const charType = possibleCharacterOptions[indexOfCharType];
 
-    password.push(allowableCharacters[listNum][charNum]);
+    const charNum = Math.floor(Math.random() * (allowableCharacters[charType].length));
+    
+    password.push(allowableCharacters[charType][charNum]);
+
+    //the used character type is removed here
+    possibleCharacterOptions.splice(indexOfCharType, 1);
+    if (possibleCharacterOptions.length === 0) {
+      possibleCharacterOptions = getCharOptions(numberOfCharacterOptions);
+    }
   }
   password = password.toString().replace(/,/g,"");
 
   return password;
+}
+
+function getCharOptions(numberOfCharacterOptions) {
+  let charOptions = [];
+  for (let i = 0; i < numberOfCharacterOptions; i ++) {
+    charOptions.push(i);
+  }
+  return charOptions;
 }
 
 function getAllowableCharacterList(userSelection) {
